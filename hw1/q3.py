@@ -1,5 +1,6 @@
 import statistics as s
-import math as m
+import random as r
+import math
 
 def median(c):
     # floor division
@@ -20,20 +21,30 @@ def fastMedian(a, b):
         return (a[0] + b[0]) / 2
     else:
         # remove the largest & smallest elements
-        r = m.ceil(len(a) / 2)
+        r = math.ceil(len(a) / 2)
         if m_a > m_b:
             # remove largest in a & smallest in b
             return fastMedian(a[:-1 * r], b[r:])
         # remove largest in b & smallest in a
         return fastMedian(a[r:], b[:-1 * r])
 
-a = [0, 1, 5, 8, 9]
-b = [0, 3, 6, 6, 9]
-real_m = s.median(a + b)
-m = fastMedian(a, b)
-print("a: ", a)
-print("b: ", b)
-print("predicted: ", m)
-print("real answer: ", real_m)
-assert m == real_m, "WRONG!"
+# test cases
+a_s = []
+b_s = []
+for i in range(1, 6):
+    a = [r.randrange(-15, 15, 1) for _ in range(i)]
+    a.sort()
+    a_s.append(a)
+    b = [r.randrange(-15, 15, 1) for _ in range(i)]
+    b.sort()
+    b_s.append(b)
+
+for a, b in zip(a_s, b_s):
+    real_m = s.median(a + b)
+    m = fastMedian(a, b)
+    print("a: ", a)
+    print("b: ", b)
+    print("predicted: ", m)
+    print("real answer: ", real_m, "\n")
+    assert m == real_m, "WRONG!"
 print("CORRECT!")
