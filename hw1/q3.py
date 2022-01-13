@@ -24,7 +24,9 @@ def fastMedian(a, b):
         return avg
     else:
         if m_a > m_b:
+            # largest in a. smallest in b
             return fastMedian(a[:-1], b[1:])
+        # largest in b. smallest in a
         return fastMedian(a[1:], b[:-1])
 
 a = [0, 1, 5, 8, 9]
