@@ -36,24 +36,32 @@ def fastMedian(a, b, n):
         if m_a > m_b:
             if n % 2 == 0:
                 return fastMedian(a[:i+1], b[i-1:], i+1)
-            return fastMedian(a[:i+1], b[i:], i+1)
-        elif n % 2 == 0:
-            return fastMedian(a[i-1:], b[:i], i+1)
-        return fastMedian(a[i:], b[:i+1], i+1)
+            else:
+                return fastMedian(a[:i+1], b[i:], i+1)
+        else:
+            if n % 2 == 0:
+                return fastMedian(a[i-1:], b[:i], i+1)
+            else:
+                return fastMedian(a[i:], b[:i+1], i+1)
 
-# random test cases with n from [1, 6]
+# random test cases with n from [0, 6]
 a_s = []
 b_s = []
-for i in range(1, 7):
-    a = [r.randrange(-15, 15, 1) for _ in range(i)]
-    a.sort()
-    a_s.append(a)
-    b = [r.randrange(-15, 15, 1) for _ in range(i)]
-    b.sort()
-    b_s.append(b)
+for _ in range(10):
+    for i in range(0, 7):
+        a = [r.randrange(-15, 15, 1) for _ in range(i)]
+        a.sort()
+        a_s.append(a)
+        b = [r.randrange(-15, 15, 1) for _ in range(i)]
+        b.sort()
+        b_s.append(b)
 
 for a, b in zip(a_s, b_s):
-    real_m = s.median(a + b)
+    # s.median errors on empty list
+    try:
+        real_m = s.median(a + b)
+    except:
+        real_m = None
     m = fastMedian(a, b, len(a))
     print("a: ", a)
     print("b: ", b)
