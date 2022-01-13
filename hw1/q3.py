@@ -23,10 +23,11 @@ def fastMedian(a, b):
         avg = (a[1] + b[0]) / 2
         return avg
     else:
+        # remove the largest & smallest elements
         if m_a > m_b:
-            # largest in a. smallest in b
+            # remove largest in a & smallest in b
             return fastMedian(a[:-1], b[1:])
-        # largest in b. smallest in a
+        # remove largest in b & smallest in a
         return fastMedian(a[1:], b[:-1])
 
 a = [0, 1, 5, 8, 9]
