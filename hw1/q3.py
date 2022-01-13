@@ -32,7 +32,6 @@ def fastMedian(a, b, n):
 
         i = int(n / 2)
         print("i: ", i)
-        print("type(i): ", type(i))
         if m_a > m_b:
             if n % 2 == 0:
                 return fastMedian(a[:i+1], b[i-1:], i+1)
@@ -40,7 +39,7 @@ def fastMedian(a, b, n):
                 return fastMedian(a[:i+1], b[i:], i+1)
         else:
             if n % 2 == 0:
-                return fastMedian(a[i-1:], b[:i], i+1)
+                return fastMedian(a[i-1:], b[:i+1], i+1)
             else:
                 return fastMedian(a[i:], b[:i+1], i+1)
 
