@@ -1,10 +1,8 @@
 import statistics as s
 
 def median(c):
-    print("[median(c)] c: ", c)
     # floor division
     m_i = len(c) // 2
-    print("[median(c)] m_i: ", m_i)
     # if list has even number of ele's
     if len(c) % 2 == 0:
         avg = (c[m_i-1] + c[m_i]) / 2
