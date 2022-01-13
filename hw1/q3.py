@@ -18,12 +18,6 @@ def fastMedian(a, b):
         return m_a
     if len(a) == 1:
         return (a[0] + b[0]) / 2
-    if len(a) == 2:
-        if m_a > m_b:
-            avg = (a[0] + b[1]) / 2
-            return avg
-        avg = (a[1] + b[0]) / 2
-        return avg
     else:
         # remove the largest & smallest elements
         r = m.ceil(len(a) / 2)
