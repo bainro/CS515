@@ -13,25 +13,42 @@ def median(c):
 
 def fastMedian(a, b):
     # print("fx called!")
+
+    if len(a) == 0:
+        print("a==[]; b: ", b)
+        return median(b)
+    elif len(b) == 0:
+        print("b==[]; a: ", a)
+        return median(a)
+
+    print("a: ", a)
     m_a = median(a)
+    print("m_a: ", m_a)
+    print("b: ", b)
     m_b = median(b)
+    print("m_b: ", m_b)
+
     if m_a == m_b:
         return m_a
     if len(a) == 1:
         return (a[0] + b[0]) / 2
+    if len(a) == 2:
+        max_ = max(a[0], b[0])
+        min_ = min(a[1], b[1])
+        return (max_ + min_) / 2
     else:
         # remove the largest & smallest elements
-        r = math.ceil(len(a) / 2)
+        i = math.ceil(len(a) / 2)
+        print("i: ", i)
         if m_a > m_b:
-            # remove largest in a & smallest in b
-            return fastMedian(a[:-1 * r], b[r:])
-        # remove largest in b & smallest in a
-        return fastMedian(a[r:], b[:-1 * r])
+            return fastMedian(a[:i], b[i:])
+        return fastMedian(a[:i], b[i:])
 
-# test cases
+
+# random test cases with n from [1, 6]
 a_s = []
 b_s = []
-for i in range(1, 6):
+for i in range(1, 7):
     a = [r.randrange(-15, 15, 1) for _ in range(i)]
     a.sort()
     a_s.append(a)
