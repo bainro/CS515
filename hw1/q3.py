@@ -1,4 +1,5 @@
 import statistics as s
+import math as m
 
 def median(c):
     # floor division
@@ -10,10 +11,13 @@ def median(c):
     return c[m_i]
 
 def fastMedian(a, b):
+    # print("fx called!")
     m_a = median(a)
     m_b = median(b)
     if m_a == m_b:
         return m_a
+    if len(a) == 1:
+        return (a[0] + b[0]) / 2
     if len(a) == 2:
         if m_a > m_b:
             avg = (a[0] + b[1]) / 2
@@ -22,11 +26,12 @@ def fastMedian(a, b):
         return avg
     else:
         # remove the largest & smallest elements
+        r = m.ceil(len(a) / 2)
         if m_a > m_b:
             # remove largest in a & smallest in b
-            return fastMedian(a[:-1], b[1:])
+            return fastMedian(a[:-1 * r], b[r:])
         # remove largest in b & smallest in a
-        return fastMedian(a[1:], b[:-1])
+        return fastMedian(a[r:], b[:-1 * r])
 
 a = [0, 1, 5, 8, 9]
 b = [0, 3, 6, 6, 9]
