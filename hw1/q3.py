@@ -23,24 +23,25 @@ def fastMedian(a, b, n):
         min_ = min(a[1], b[1])
         return (max_ + min_) / 2
     else:
-        print("a: ", a)
         m_a = median(a)
-        print("m_a: ", m_a)
-        print("b: ", b)
         m_b = median(b)
-        print("m_b: ", m_b)
 
         i = int(n / 2)
-        print("i: ", i)
+        # include a's median value
         if m_a > m_b:
             if n % 2 == 0:
+                # the smaller if median is an avg
                 return fastMedian(a[:i+1], b[i-1:], i+1)
             else:
+                # the median value exists in the list
                 return fastMedian(a[:i+1], b[i:], i+1)
+        # include b's median value
         else:
             if n % 2 == 0:
+                # the smaller if median is an avg
                 return fastMedian(a[i-1:], b[:i+1], i+1)
             else:
+                # the median value exists in the list
                 return fastMedian(a[i:], b[:i+1], i+1)
 
 # random test cases with n from [0, 6]
