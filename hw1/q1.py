@@ -46,6 +46,7 @@ test_3 = [1, 2, -4, 5, 3, 4]
 test_4 = [1, 2, 2, 4, 4, 6, 7]
 test_5 = [2]
 test_6 = [1]
+test_7 = [1, 2, 3, 4, 5, 6] # example worst case!
 
 assert in_order(test_1, 0) == False, "WRONG!"
 # version B doesn't pass, wrong base case
@@ -60,5 +61,6 @@ assert in_order(test_4, 4) == False, "WRONG!"
 assert in_order(test_5, 1) == False, "WRONG!"
 assert in_order(test_6, 1) == True,  "WRONG!"
 assert in_order(test_6, 2) == False, "WRONG!"
+assert in_order(test_7, 6) == True,  "WRONG!"
 
 print("CORRECT!")
