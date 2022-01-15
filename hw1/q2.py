@@ -50,7 +50,7 @@ def liberty_hanoi(n, p=0, a=0, mode=1):
     if mode == 1:
         # print("mode 1: unravel")
         move(p, p+a)
-        return hanoi_liberty(n, p, a-1)
+        return liberty_hanoi(n, p, a-1)
     elif mode == 2:
         # print("mode 2: reverse")
         for i in range(n, 1, -1):
@@ -60,7 +60,7 @@ def liberty_hanoi(n, p=0, a=0, mode=1):
                 move(s, s+1)
             # last peg's block to the first unoccupided on the left
             move(last_p, last_p-i)
-        return hanoi_liberty(n, n-2, 0, mode)
+        return liberty_hanoi(n, n-2, 0, mode)
     elif mode == 3:
         # print("mode 3: restack")
         for i in range(-1, n-1):
