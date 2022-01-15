@@ -47,11 +47,10 @@ def hanoi_extra_peg(n, p=0, a=n-2, mode=1):
         return hanoi_extra_peg(n, p, a-1)
     # mode 2: reverse order
     elif mode == 2:
-        # loop of n iters (?)
-            # move some pegs right
-            # move furthest right peg some to left
-        move(p, p+a)
-        return hanoi_extra_peg(n, p, a-1)
+        # for loop it & move on
+        for i in range(n):
+            print(i)
+        return hanoi_extra_peg(n, p, 0, mode)
     # mode 3: restack
     elif mode == 3:
         move(p, p+a)
