@@ -1,5 +1,6 @@
 # 2D list with each peg as a list
 hanoi_board = None
+last_p = 0
 num_moves = 0
 
 # used for ensuring legal moves
@@ -37,7 +38,8 @@ def hanoi_extra_peg(n, p=0, a=n-2, mode=1):
     # n: number of blocks
     # p: peg number
     # a: number of adj moves to make
-
+    global last_p
+       
     if a <= 0 or p < 0:
         mode += 1
     
@@ -47,9 +49,13 @@ def hanoi_extra_peg(n, p=0, a=n-2, mode=1):
         return hanoi_extra_peg(n, p, a-1)
     # mode 2: reverse order
     elif mode == 2:
-        for i in range(n):
-            # shuffle n to the right
-            # last peg's block n-1 to the left
+        for i in range(n, 1, -1):
+            # shuffle decaying group to the right
+            for j in range(i):
+                s = last_p-i
+                move(s, s+1)
+            # last peg's block to the left
+            move(last_p, last_p-i)
         return hanoi_extra_peg(n, p, 0, mode)
     # mode 3: restack
     elif mode == 3:
@@ -59,6 +65,7 @@ def hanoi_extra_peg(n, p=0, a=n-2, mode=1):
         return num_moves
 
 hanoi_board = [[3,2,1],[],[],[]]
+last_p = len(hanoi_board) - 1
 hanoi_extra_peg(4)
 
 
