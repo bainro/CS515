@@ -2,7 +2,6 @@ import statistics as s
 import random as r
 
 def median(c):
-    # floor division
     m_i = len(c) // 2
     # if list has even number of ele's
     if len(c) % 2 == 0:
@@ -11,8 +10,6 @@ def median(c):
     return c[m_i]
 
 def fastMedian(a, b, n):
-    # print("fx called!")
-
     # there is no element in any array
     if n == 0:
         return None
