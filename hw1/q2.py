@@ -22,11 +22,11 @@ def move(p, q):
 
     # moving block to the left vs right
     if p > q:
-        tmp_i = -1
+        _dir = -1
     else:
-        tmp_i = 1
+        _dir = 1
     
-    r_iter = range(tmp_i, p-q-tmp_i, tmp_i)    
+    r_iter = range(_dir, p-q-_dir, _dir)    
         
     for i in range(r_iter):
         num_moves += 1
