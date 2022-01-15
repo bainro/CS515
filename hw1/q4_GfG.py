@@ -1,7 +1,8 @@
 # Python 3 program to count inversions in an array
 
-# Function to Use Inversion Count
+from math import factorial as f
 
+# Function to Use Inversion Count
 
 def mergeSort(arr, n):
     # A temp_arr is created to store
@@ -90,7 +91,7 @@ def merge(arr, temp_arr, left, mid, right):
         k += 1
         j += 1
 
-    # Copy the sorted subarray into Original array
+    # Copy the sorted subarray into original array
     for loop_var in range(left, right + 1):
         arr[loop_var] = temp_arr[loop_var]
 
@@ -103,3 +104,10 @@ arr = [1, 20, 6, 4, 5]
 n = len(arr)
 result = mergeSort(arr, n)
 print("Number of inversions are", result)
+# worst case is sorted backwards. n choose 2 assuming no repeats
+worst = f(n) / f(2) / f(n-2)
+arr.sort()
+arr.reverse()
+result = mergeSort(arr, n)
+print("Number of inversions for worst case", result)
+assert worst - result <= 1, f"BROKE! Worst case should have been {worst}"
