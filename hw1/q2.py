@@ -41,7 +41,7 @@ def move(p, q):
     # mode 2: move block to this peg
 # a: number of adj moves to make
 # mode: 1.unravel, 2.reverse, 3.restack
-def hanoi_liberty(n, p=0, a=0, mode=1):   
+def liberty_hanoi(n, p=0, a=0, mode=1):   
     global last_p, board
 
     if a <= 0:
@@ -81,6 +81,6 @@ for board in boards:
     num_moves = 0
     last_p = len(board) - 1
     n = len(board[0])
-    hanoi_liberty(n, a=n-1)
+    liberty_hanoi(n, a=n-1)
     print(f"number of moves for n={n}: ", num_moves, "\n")
     assert num_moves >= 3 * n^2 or not n, "bounds reported incorrectly!"
