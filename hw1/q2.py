@@ -2,12 +2,16 @@
 hanoi_board = None
 num_moves = 0
 
-def check_peg(i):
-    p = hanoi_board[i]
-    tmp = p.copy()
-    tmp.sort()
-    tmp.reverse()
-    return tmp == p
+def check_pegs():
+    global hanoi_board
+    for _ in range(len(hanoi_board)):
+        p = hanoi_board[i]
+        tmp = p.copy()
+        tmp.sort()
+        tmp.reverse()
+        if tmp != p
+            return False
+    return True
 
 def move(p, q):
     # p: start peg number
@@ -22,11 +26,12 @@ def move(p, q):
             num_moves += 1
             # move last # from list[p] to list[p-1]
             b = hanoi_board[p].pop()
-            hanoi_board[p+i].append(b)
+            hanoi_board[p-i].append(b)
             # assert that each peg (represented as an array) is decraseing order
-            assert check_peg(), "ILLEGAL MOVE YA MONKEY!"
     else:
         pass
+    
+    assert check_pegs(), "ILLEGAL MOVE YA MONKEY!"
 
 def hanoi_extra_peg(n, p, q=n-1, mode=1):
     # n: number of blocks
