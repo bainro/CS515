@@ -1,11 +1,62 @@
-'''
-There is always enough pegs to move all non-bottom START blocks
-to non-END (ie TMP) pegs without any stacking. This would leave 
-just the bottom/largest block on START, which can be directly 
-moved to END. Then just grab each TMP peg's single block and 
-place it onto END as well (minding the order!).
-'''
+# 2D list with each peg as a list
+hanoi_board = None
+num_moves = 0
 
+def check_peg(i):
+    p = hanoi_board[i]
+    tmp = p.copy()
+    tmp.sort()
+    tmp.reverse()
+    return tmp == p
+
+def move(p, q):
+    # p: start peg number
+    # n: end peg number
+
+    global num_moves
+    global hanoi_board
+
+    # moving peg to the left
+    if p > q:
+        for i in range(abs(p-q)):
+            num_moves += 1
+            # move last # from list[p] to list[p-1]
+            b = hanoi_board[p].pop()
+            hanoi_board[p+i].append(b)
+            # assert that each peg (represented as an array) is decraseing order
+            assert check_peg(), "ILLEGAL MOVE YA MONKEY!"
+    else:
+        pass
+
+def hanoi_extra_peg(n, p, q=n-1, mode=1):
+    # n: number of blocks
+    # p: peg number
+    # q: number of adj moves
+
+    # mode 1: unravel
+    if mode == 1:
+        move(p, p+q)
+        hanoi_extra_peg(n, p, q-1)
+    # mode 2: reverse order
+    elif mode == 2:
+        pass
+    # mode 3: restack
+    elif mode == 3:
+        move(p, )
+        hanoi_extra_peg(n, p, q-1)
+
+    if mode < 3:
+        hanoi_extra_peg(n, p, None, mode=mode+1)
+    else:
+        return num_moves
+
+hanoi_extra_peg()
+
+
+
+
+
+'''
 def move(src, dest, tmps, top_call=False):
     if len(tmps) > 0:
         move(src, tmps[0], tmps[1:])
@@ -16,8 +67,4 @@ def move(src, dest, tmps, top_call=False):
 
 def move_top_block(s, d):
     pass
-
-# num_p = 4
-# # remove START & END from free pegs
-# tmps = range(num_p)[1:-1]
-# move(0, num_p-1, tmps, top_call=True)
+'''
