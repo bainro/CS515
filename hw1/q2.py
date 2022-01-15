@@ -21,12 +21,10 @@ def move(p, q):
     global hanoi_board
 
     # moving block to the left vs right
-    if p > q:
-        dir_ = -1
+    if p < q:
+        r_iter = range(1, p-q+1, 1)
     else:
-        dir_ = 1
-    
-    r_iter = range(dir_, p-q-dir_, dir_)    
+        r_iter = range(-1, p-q-1, -1)    
         
     for i in range(r_iter):
         num_moves += 1
