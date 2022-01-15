@@ -37,7 +37,7 @@ def move(p, q):
 
 # n: number of blocks
 # p: peg index
-    # mode 1: move this peg
+    # mode 1: move this peg's top block
     # mode 2: move to this peg
 # a: number of adj moves to make
 # mode: 1.unravel, 2.reverse, 3.restack
