@@ -38,7 +38,7 @@ def hanoi_extra_peg(n, p=0, a=n-2, mode=1):
     # p: peg number
     # a: number of adj moves to make
 
-    if a <= 0:
+    if a <= 0 or p < 0:
         mode += 1
     
     # mode 1: unravel
