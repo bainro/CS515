@@ -33,26 +33,27 @@ def move(p, q):
         hanoi_board[p+i].append(b)
         assert check_board(), "ILLEGAL MOVE YA MONKEY!"
 
-def hanoi_extra_peg(n, p=0, q=n-1, mode=1):
+def hanoi_extra_peg(n, p=0, a=n-1, mode=1):
     # n: number of blocks
     # p: peg number
-    # q: number of adj moves
+    # a: number of adj moves
 
-    if q == 0:
+    if a == 0:
         mode += 1
     
     # mode 1: unravel
     if mode == 1:
-        move(p, p+q)
-        return hanoi_extra_peg(n, p, q-1)
+        move(p, p+a)
+        return hanoi_extra_peg(n, p, a-1)
     # mode 2: reverse order
     elif mode == 2:
-        move(p, p+q)
-        return hanoi_extra_peg(n, p, q-1)
+        # need to complicate this up!
+        move(p, p+a)
+        return hanoi_extra_peg(n, p, a-1)
     # mode 3: restack
     elif mode == 3:
-        move(p, p+q)
-        return hanoi_extra_peg(n, p-1, q+1)
+        move(p, p+a)
+        return hanoi_extra_peg(n, p-1, a+1)
     else:
         return num_moves
 
