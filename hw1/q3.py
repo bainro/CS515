@@ -24,6 +24,7 @@ def fastMedian(a, b, n):
         m_b = median(b)
 
         i = int(n / 2)
+        # any values on the left of m_b can be cut
         if m_a > m_b:
             if n % 2 == 0:
                 # the smaller if median is an avg
@@ -31,6 +32,7 @@ def fastMedian(a, b, n):
             else:
                 # the median value exists in the list
                 return fastMedian(a[:i+1], b[i:], i+1)
+        # any values on the right of m_b can be cut
         else:
             if n % 2 == 0:
                 # the smaller if median is an avg
