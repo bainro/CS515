@@ -35,14 +35,13 @@ def move(p, q):
         print(f"After move {num_moves}: ", board)
         assert check_board(), "ILLEGAL MOVE!"
 
-def hanoi_liberty(n, p=0, a=0, mode=1):
-    # n: number of blocks
-    # p: peg index
-        # mode 1: move this peg
-        # mode 2: move to this peg
-    # a: number of adj moves to make
-    # mode: 1.unravel, 2.reverse, 3.restack
-
+# n: number of blocks
+# p: peg index
+    # mode 1: move this peg
+    # mode 2: move to this peg
+# a: number of adj moves to make
+# mode: 1.unravel, 2.reverse, 3.restack
+def hanoi_liberty(n, p=0, a=0, mode=1):   
     global last_p, board
 
     if a <= 0:
