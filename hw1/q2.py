@@ -55,10 +55,10 @@ def hanoi_extra_peg(n, p, q=n-1, mode=1):
         move(p, )
         hanoi_extra_peg(n, p, q-1)
 
-    if mode < 3:
-        hanoi_extra_peg(n, p, None, mode=mode+1)
-    else:
-        return num_moves
+#     if mode < 3:
+#         hanoi_extra_peg(n, p, None, mode=mode+1)
+#     else:
+      return num_moves
 
 hanoi_extra_peg()
 
