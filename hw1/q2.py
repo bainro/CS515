@@ -2,42 +2,47 @@
 hanoi_board = None
 num_moves = 0
 
-def check_pegs():
+# used for ensuring legal moves
+def check_board():
     global hanoi_board
     for _ in range(len(hanoi_board)):
         p = hanoi_board[i]
         tmp = p.copy()
         tmp.sort()
         tmp.reverse()
+        # should be the same as sorted & then reversed
         if tmp != p
             return False
     return True
 
+# move block from peg p -> q sequentially
 def move(p, q):
-    # p: start peg number
-    # n: end peg number
-
     global num_moves
     global hanoi_board
 
-    # moving peg to the left
+    # moving block to the left vs right
     if p > q:
-        for i in range(abs(p-q)):
-            num_moves += 1
-            # move last # from list[p] to list[p-1]
-            b = hanoi_board[p].pop()
-            hanoi_board[p-i].append(b)
-            # assert that each peg (represented as an array) is decraseing order
+        tmp_i = -1
     else:
-        pass
+        tmp_i = 1
     
-    assert check_pegs(), "ILLEGAL MOVE YA MONKEY!"
+    r_iter = range(tmp_i, p-q-tmp_i, tmp_i)    
+        
+    for i in range(r_iter):
+        num_moves += 1
+        # move last # from list[p] to list[p-1]
+        b = hanoi_board[p].pop()
+        hanoi_board[p+i].append(b)
+        assert check_board(), "ILLEGAL MOVE YA MONKEY!"
 
 def hanoi_extra_peg(n, p, q=n-1, mode=1):
     # n: number of blocks
     # p: peg number
     # q: number of adj moves
 
+    if q == 0:
+        mode += 1
+    
     # mode 1: unravel
     if mode == 1:
         move(p, p+q)
