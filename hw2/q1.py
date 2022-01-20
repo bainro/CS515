@@ -1,7 +1,7 @@
 
 '''
 Returns length of longest subsequence that's 
-both increasing and alternating wrt parity.
+both increasing and alternating even/odd.
 '''
 def fast_LIS(a):
     n = len(a)
@@ -22,7 +22,8 @@ def fast_LIS(a):
             keep = 1 + memo[j][j+1]
             skip = memo[i][j+1]
             # print(a[i], a[j])
-            if a[i] > a[j]:
+            # print("type: ", type(a[i]))
+            if a[i] > a[j] or same_parity(a[i], a[j]):
                 # print("skip")
                 memo[i][j] = skip
             else:
@@ -33,7 +34,16 @@ def fast_LIS(a):
     print("memo: ", memo)
     return memo[0][0]
 
-test_a = [4, 0, 2, 0, 1]
+def same_parity(a, b):
+    # special case for the sentinel value of neg infinity
+    if a == float("-inf") or b == float("-inf"):
+        return False
+    return is_even(a) == is_even(b)
+
+def is_even(v):
+    return True if v % 2 == 0 else False
+
+test_a = [4, 0, 2, 0, 1, 2, 2, 4, 9]
 result = fast_LIS(test_a)
 print("test_a", test_a)
 print("result: ", result)
