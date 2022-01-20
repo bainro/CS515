@@ -43,7 +43,39 @@ def same_parity(a, b):
 def is_even(v):
     return True if v % 2 == 0 else False
 
-test_a = [4, 0, 2, 0, 1, 2, 2, 4, 9]
-result = fast_LIS(test_a)
-print("test_a", test_a)
-print("result: ", result)
+tests = []
+answers = []
+
+tests.append([])
+answers.append(0)
+
+tests.append([0])
+answers.append(1)
+
+tests.append([0, 2])
+answers.append(1)
+
+tests.append([0, 2, 0])
+answers.append(1)
+
+tests.append([0, 2, 1])
+answers.append(2)
+
+tests.append([0, 2, 1, 1, 3])
+answers.append(2)
+
+tests.append([0, 2, 1, 1, 3, 2])
+answers.append(3)
+
+tests.append([0, 2, 1, 1, 3, 2, 2])
+answers.append(3)
+
+tests.append([4, 0, 2, 0, 1, 2, 2, 4, 9])
+answers.append(4)
+
+for i, test_a in enumerate(tests):
+    result = fast_LIS(test_a)
+    print("test_a: ", test_a)
+    print("result: ", result, "\n")
+    assert answers[i] == result, f"WRONG! Correct answer was: {answers[i]}"
+print("CORRECT! :)")
