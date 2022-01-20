@@ -15,23 +15,16 @@ def fast_LIS(a):
     rows = n + 1
     memo = [[0 for _ in range(cols)] for _ in range(rows)]
 
-    # iterate in reverse dir
+    # from bottom right to top left
     for j in range(n, 0, -1):
-        # print("j: ", j)
         for i in range(j):
-            # print("i: ", i)
             keep = memo[j][j+1] + 1
             skip = memo[i][j+1]
-            # print(a[i], a[j])
-            if a[i] > a[j]:
-                # print("skip")
+            if a[i] > a[j] or same_parity(a[i], a[j]):
                 memo[i][j] = skip
             else:
-                # print("keep: ", keep)
-                # print("skip: ", skip, "\n")
                 memo[i][j] = max(keep, skip)
 
-    # print("memo: ", memo)
     return memo[0][1]
 
 def same_parity(a, b):
@@ -73,9 +66,12 @@ answers.append(3)
 tests.append([4, 0, 2, 0, 1, 2, 2, 4, 9])
 answers.append(4)
 
+tests.append([0, 6, 8, 1, 1, 2, 19, 6, 0, 3, 2, 3, 0, 0])
+answers.append(4)
+
 for i, test_a in enumerate(tests):
     result = fast_LIS(test_a)
     print("test_a: ", test_a)
     print("result: ", result, "\n")
-#     assert answers[i] == result, f"WRONG! Correct answer was: {answers[i]}"
-# print("CORRECT! :)")
+    assert answers[i] == result, f"WRONG! Correct answer was: {answers[i]}"
+print("CORRECT! :)")
